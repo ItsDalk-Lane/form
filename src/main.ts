@@ -3,10 +3,13 @@ import {DEFAULT_SETTINGS, MyPluginSettings, SampleSettingTab} from "./settings";
 
 // Remember to rename these classes and interfaces!
 
-export default class MyPlugin extends Plugin {
+export default class HelloWorldPlugin extends Plugin {
 	settings: MyPluginSettings;
 
 	async onload() {
+		this.addRibbonIcon('dice', 'Greet', () => {
+  new Notice('这是一段用于测试的文字内容！');
+});
 		await this.loadSettings();
 
 		// This creates an icon in the left ribbon.
@@ -24,7 +27,7 @@ export default class MyPlugin extends Plugin {
 			id: 'open-modal-simple',
 			name: 'Open modal (simple)',
 			callback: () => {
-				new SampleModal(this.app).open();
+				new FormModal(this.app).open();
 			}
 		});
 		// This adds an editor command that can perform some operation on the current editor instance
@@ -46,7 +49,7 @@ export default class MyPlugin extends Plugin {
 					// If checking is true, we're simply "checking" if the command can be run.
 					// If checking is false, then we want to actually perform the operation.
 					if (!checking) {
-						new SampleModal(this.app).open();
+						new FormModal(this.app).open();
 					}
 
 					// This command will only show up in Command Palette when the check function returns true
@@ -65,9 +68,6 @@ export default class MyPlugin extends Plugin {
 			new Notice("Click");
 		});
 
-		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
-
 	}
 
 	onunload() {
@@ -82,7 +82,7 @@ export default class MyPlugin extends Plugin {
 	}
 }
 
-class SampleModal extends Modal {
+class FormModal extends Modal {
 	constructor(app: App) {
 		super(app);
 	}

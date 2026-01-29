@@ -1,0 +1,254 @@
+{
+  "concepts": {
+    "基础概念": {
+      "file-system": {
+        "name": "文件系统",
+        "description": "理解文件夹、文件、路径的概念",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "project-structure": {
+        "name": "项目结构",
+        "description": "理解项目的组织方式和文件分类",
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "开发工具": {
+      "nodejs": {
+        "name": "Node.js",
+        "description": "JavaScript 运行环境",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "vscode": {
+        "name": "VS Code",
+        "description": "代码编辑器的使用",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "npm": {
+        "name": "NPM",
+        "description": "包管理工具",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "terminal": {
+        "name": "命令行",
+        "description": "终端的基本操作",
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "HTML": {
+      "tags": {
+        "name": "HTML 标签",
+        "items": [],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "attributes": {
+        "name": "HTML 属性",
+        "items": [],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "structure": {
+        "name": "HTML 结构",
+        "description": "标签嵌套和文档结构",
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "CSS": {
+      "selectors": {
+        "name": "CSS 选择器",
+        "items": [],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "box-model": {
+        "name": "盒模型",
+        "description": "margin、padding、border 的理解",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "flexbox": {
+        "name": "Flexbox 布局",
+        "description": "弹性布局方式",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "grid": {
+        "name": "Grid 布局",
+        "description": "网格布局方式",
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "JavaScript": {
+      "variables": {
+        "name": "变量",
+        "items": ["let", "const"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "data-types": {
+        "name": "数据类型",
+        "items": ["string", "number", "boolean", "array", "object"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "functions": {
+        "name": "函数",
+        "items": ["declaration", "arrow-function"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "dom": {
+        "name": "DOM 操作",
+        "description": "操作网页元素",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "events": {
+        "name": "事件处理",
+        "description": "响应用户操作",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "async": {
+        "name": "异步编程",
+        "items": ["Promise", "async/await"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "TypeScript": {
+      "types": {
+        "name": "类型系统",
+        "items": ["string", "number", "boolean", "array", "object"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "interfaces": {
+        "name": "接口",
+        "description": "定义对象的形状",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "classes": {
+        "name": "类",
+        "description": "面向对象编程",
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "React": {
+      "components": {
+        "name": "组件",
+        "description": "React 组件的概念",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "jsx": {
+        "name": "JSX",
+        "description": "在 JavaScript 中写 HTML",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "hooks": {
+        "name": "Hooks",
+        "items": ["useState", "useEffect"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    },
+    "Obsidian API": {
+      "plugin-lifecycle": {
+        "name": "插件生命周期",
+        "items": ["onload", "onunload"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "commands": {
+        "name": "命令系统",
+        "description": "注册和执行命令",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "modals": {
+        "name": "模态窗口",
+        "description": "弹窗组件",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "settings": {
+        "name": "设置系统",
+        "description": "插件配置管理",
+        "mastered": false,
+        "firstTaughtInTask": null
+      },
+      "files": {
+        "name": "文件操作",
+        "items": ["read", "create", "update"],
+        "mastered": false,
+        "firstTaughtInTask": null
+      }
+    }
+  },
+  "taskKnowledgeMapping": {
+    "1": ["file-system", "project-structure"],
+    "2": ["nodejs", "vscode"],
+    "3": ["npm"],
+    "4": ["terminal", "npm"],
+    "5": ["typescript-basics"],
+    "6": ["plugin-lifecycle"],
+    "7": ["json"],
+    "8": ["build-tools"],
+    "9": ["html-tags"],
+    "10": ["css-selectors"],
+    "11": ["box-model"],
+    "12": ["flexbox"],
+    "13": ["css-variables"],
+    "14": ["html-structure", "modal"],
+    "15": ["css-styling"],
+    "16": ["html-forms"],
+    "17": ["css-pseudo-classes"],
+    "18": ["grid"],
+    "19": ["css-buttons"],
+    "20": ["responsive-design"],
+    "21": ["js-variables", "data-types"],
+    "22": ["js-functions"],
+    "23": ["dom-manipulation"],
+    "24": ["event-listeners"],
+    "25": ["conditionals", "loops"],
+    "26": ["arrays", "objects"],
+    "27": ["async-programming"],
+    "28": ["modal-control"],
+    "29": ["form-data"],
+    "30": ["form-validation"],
+    "31": ["dynamic-elements"],
+    "32": ["local-storage"],
+    "33": ["typescript-types"],
+    "34": ["obsidian-plugin-class"],
+    "35": ["obsidian-commands"],
+    "36": ["obsidian-settings"],
+    "37": ["obsidian-modals"],
+    "38": ["obsidian-files-api"],
+    "39": ["frontmatter"],
+    "40": ["file-creation"],
+    "41": ["react-components"],
+    "42": ["react-hooks"],
+    "43": ["react-obsidian-integration"],
+    "44": ["service-container"],
+    "45": ["form-fields"],
+    "46": ["dropdown-component"],
+    "47": ["datetime-component"],
+    "48": ["form-data-model"],
+    "49": ["file-creation-action"],
+    "50": ["action-flow-editor"],
+    "51": ["form-execution"],
+    "52": ["error-handling"]
+  }
+}

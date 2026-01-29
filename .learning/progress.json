@@ -1,0 +1,17 @@
+{
+  "currentTask": 1,
+  "completedTasks": [],
+  "startDate": "2026-01-29",
+  "totalTasks": 52,
+  "taskHistory": [
+    {
+      "taskId": 1,
+      "taskName": "认识项目文件结构",
+      "status": "not_started",
+      "startDate": null,
+      "completionDate": null,
+      "attempts": 0,
+      "notes": ""
+    }
+  ]
+}
