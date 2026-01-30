@@ -4,14 +4,14 @@
       "file-system": {
         "name": "文件系统",
         "description": "理解文件夹、文件、路径的概念",
-        "mastered": false,
-        "firstTaughtInTask": null
+        "mastered": true,
+        "firstTaughtInTask": 1
       },
       "project-structure": {
         "name": "项目结构",
         "description": "理解项目的组织方式和文件分类",
-        "mastered": false,
-        "firstTaughtInTask": null
+        "mastered": true,
+        "firstTaughtInTask": 1
       }
     },
     "开发工具": {
@@ -30,8 +30,8 @@
       "npm": {
         "name": "NPM",
         "description": "包管理工具",
-        "mastered": false,
-        "firstTaughtInTask": null
+        "mastered": true,
+        "firstTaughtInTask": 1
       },
       "terminal": {
         "name": "命令行",
