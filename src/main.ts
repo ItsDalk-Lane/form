@@ -1,10 +1,10 @@
 import {App, Editor, MarkdownView, Modal, Notice, Plugin} from 'obsidian';
-import {DEFAULT_SETTINGS, MyPluginSettings, SampleSettingTab} from "./settings";
+import {DEFAULT_SETTINGS, FormPluginSettings, FormSettingTab} from "./settings";
 
 // Remember to rename these classes and interfaces!
 
 export default class HelloWorldPlugin extends Plugin {
-	settings: MyPluginSettings;
+	settings: FormPluginSettings;
 
 	async onload() {
 		this.addRibbonIcon('dice', 'Greet', () => {
@@ -60,7 +60,7 @@ export default class HelloWorldPlugin extends Plugin {
 		});
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addSettingTab(new FormSettingTab(this.app, this));
 
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
@@ -74,7 +74,7 @@ export default class HelloWorldPlugin extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<MyPluginSettings>);
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<FormPluginSettings>);
 	}
 
 	async saveSettings() {
@@ -92,6 +92,7 @@ class FormModal extends Modal {
 		contentEl.setText('Woah!');
 	}
 
+	
 	onClose() {
 		const {contentEl} = this;
 		contentEl.empty();
