@@ -1,100 +1,104 @@
-import {App, Editor, MarkdownView, Modal, Notice, Plugin} from 'obsidian';
-import {DEFAULT_SETTINGS, FormPluginSettings, FormSettingTab} from "./settings";
+import { Plugin, Notice } from 'obsidian';
+import { DEFAULT_SETTINGS, FormPluginSettings, FormSettingTab } from './settings';
+import { DebugLogger } from './utils/logger';
+import { CommandManager } from './commands';
 
-// Remember to rename these classes and interfaces!
+/**
+ * Form 插件主类
+ * 负责插件生命周期管理和核心功能注册
+ */
+export default class FormPlugin extends Plugin {
+  settings: FormPluginSettings;
+  logger: DebugLogger;
+  commandManager: CommandManager;
 
-export default class HelloWorldPlugin extends Plugin {
-	settings: FormPluginSettings;
+  /**
+   * 插件加载时的初始化
+   */
+  async onload() {
+    // 加载设置
+    await this.loadSettings();
 
-	async onload() {
-		this.addRibbonIcon('dice', 'Greet', () => {
-  new Notice('这是一段用于测试的文字内容！');
-});
-		await this.loadSettings();
+    // 初始化日志器
+    this.initializeLogger();
 
-		// This creates an icon in the left ribbon.
-		this.addRibbonIcon('dice', 'Sample', (evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
-		});
+    // 注册命令
+    this.registerCommands();
 
-		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-		const statusBarItemEl = this.addStatusBarItem();
-		statusBarItemEl.setText('Status bar text');
+    // 注册 UI 元素
+    this.registerUI();
 
-		// This adds a simple command that can be triggered anywhere
-		this.addCommand({
-			id: 'open-modal-simple',
-			name: 'Open modal (simple)',
-			callback: () => {
-				new FormModal(this.app).open();
-			}
-		});
-		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'replace-selected',
-			name: 'Replace selected content',
-			editorCallback: (editor: Editor, view: MarkdownView) => {
-				editor.replaceSelection('Sample editor command');
-			}
-		});
-		// This adds a complex command that can check whether the current state of the app allows execution of the command
-		this.addCommand({
-			id: 'open-modal-complex',
-			name: 'Open modal (complex)',
-			checkCallback: (checking: boolean) => {
-				// Conditions to check
-				const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (markdownView) {
-					// If checking is true, we're simply "checking" if the command can be run.
-					// If checking is false, then we want to actually perform the operation.
-					if (!checking) {
-						new FormModal(this.app).open();
-					}
+    // 注册事件监听器
+    this.registerEventListeners();
 
-					// This command will only show up in Command Palette when the check function returns true
-					return true;
-				}
-				return false;
-			}
-		});
+    // 注册设置标签页
+    this.addSettingTab(new FormSettingTab(this.app, this));
 
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new FormSettingTab(this.app, this));
+    this.logger.info('Form plugin loaded successfully');
+  }
 
-		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
-		// Using this function will automatically remove the event listener when this plugin is disabled.
-		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
-			new Notice("Click");
-		});
+  /**
+   * 插件卸载时的清理
+   */
+  onunload() {
+    this.logger.info('Form plugin unloading');
+  }
 
-	}
+  /**
+   * 加载插件设置
+   */
+  private async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<FormPluginSettings>);
+  }
 
-	onunload() {
-	}
+  /**
+   * 保存插件设置
+   */
+  async saveSettings() {
+    await this.saveData(this.settings);
+  }
 
-	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData() as Partial<FormPluginSettings>);
-	}
+  /**
+   * 初始化日志器
+   */
+  private initializeLogger() {
+    this.logger = new DebugLogger(this.settings, this.manifest.name);
+  }
 
-	async saveSettings() {
-		await this.saveData(this.settings);
-	}
-}
+  /**
+   * 注册所有命令
+   */
+  private registerCommands() {
+    this.commandManager = new CommandManager(this, this.logger);
+    this.commandManager.registerAll();
+  }
 
-class FormModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
+  /**
+   * 注册 UI 元素
+   */
+  private registerUI() {
+    // 左侧功能区的测试按钮
+    this.addRibbonIcon('dice', 'Greet', () => {
+      new Notice('这是一段用于测试的文字内容！');
+    });
 
-	onOpen() {
-		let {contentEl} = this;
-		contentEl.setText('Woah!');
-	}
+    // 左侧功能区的示例按钮
+    this.addRibbonIcon('dice', 'Sample', () => {
+      new Notice('This is a notice!');
+    });
 
-	
-	onClose() {
-		const {contentEl} = this;
-		contentEl.empty();
-	}
+    // 底部状态栏项目
+    const statusBarItemEl = this.addStatusBarItem();
+    statusBarItemEl.setText('Status bar text');
+  }
+
+  /**
+   * 注册事件监听器
+   */
+  private registerEventListeners() {
+    // 注册全局 DOM 事件（插件禁用时会自动移除）
+    this.registerDomEvent(document, 'click', () => {
+      this.logger.debug('Document click event detected');
+    });
+  }
 }

@@ -1,90 +1,116 @@
-# Obsidian Sample Plugin
+# Form
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+An Obsidian plugin that allows you to create simple, one-action workflows — with ease.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open modal (simple)" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Modal Commands**: Open simple modal dialogs for quick actions
+- **Editor Commands**: Replace selected content in your notes
+- **Customizable Settings**: Configure plugin behavior through Obsidian settings
+- **Debug Mode**: Built-in logging for troubleshooting and development
+- **UI Elements**: Ribbon icons and status bar integration
+- **Multi-language Support**: Built with TypeScript for type safety
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+### Manual Installation
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. Download the latest release
+2. Extract the files to your Obsidian vault's plugins folder: `vault/.obsidian/plugins/form/`
+3. Enable the plugin in Obsidian under Settings → Community Plugins
 
-## Releasing new releases
+## Usage
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+### Commands
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+The plugin provides the following commands (accessible via Command Palette `Ctrl/Cmd + P`):
 
-## Adding your plugin to the community plugin list
+- **Open modal (simple)**: Opens a simple modal dialog
+- **Replace selected content**: Replaces the currently selected text in your note with "Sample editor command"
+- **Open modal (complex)**: Opens a modal dialog (only available when a markdown view is active)
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+### UI Elements
 
-## How to use
+- **Ribbon Icons**: Click the dice icons in the left sidebar to trigger test actions
+- **Status Bar**: View status information at the bottom of the Obsidian window
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+## Configuration
 
-## Manually installing the plugin
+Access plugin settings via Settings → Community Plugins → Form → Options
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+### Settings
 
-## Improve code quality with eslint
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- This project already has eslint preconfigured, you can invoke a check by running`npm run lint`
-- Together with a custom eslint [plugin](https://github.com/obsidianmd/eslint-plugin) for Obsidan specific code guidelines.
-- A GitHub action is preconfigured to automatically lint every commit on all branches.
+- **Debug mode**: Enable debug logging for troubleshooting
+- **Debug level**: Select the minimum level of debug messages to log (Debug, Info, Warning, Error)
+- **Settings #1**: A custom setting for user preferences
 
-## Funding URL
+## Development
 
-You can include funding URLs where people who use your plugin can financially support it.
+### Prerequisites
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+- Node.js 16+
+- npm or yarn
+- Obsidian app
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+### Setup
+
+```bash
+# Install dependencies
+npm install
 ```
 
-If you have multiple URLs, you can also do:
+### Build
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+```bash
+# Development build with watch mode
+npm run dev
+
+# Production build
+npm run build
 ```
 
-## API Documentation
+### Lint
 
-See https://docs.obsidian.md
+```bash
+# Run ESLint
+npm run lint
+```
+
+### Version Bump
+
+```bash
+# Update version numbers in manifest.json and versions.json
+npm version patch/minor/major
+```
+
+## Project Structure
+
+```
+form/
+├── src/
+│   ├── commands/
+│   │   └── index.ts          # Command registration and management
+│   ├── ui/
+│   │   └── modals/
+│   │       └── form-modal.ts # Modal dialog implementation
+│   ├── utils/
+│   │   └── logger.ts         # Debug logging utilities
+│   ├── main.ts               # Plugin main class
+│   └── settings.ts           # Plugin settings and configuration
+├── esbuild.config.mjs        # Build configuration
+├── manifest.json             # Obsidian plugin manifest
+├── package.json              # Node.js dependencies
+└── tsconfig.json             # TypeScript configuration
+```
+
+## License
+
+[BSD 0-Clause License](LICENSE)
+
+## Author
+
+vran
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
